@@ -1,1 +1,4 @@
 https://angular.io/guide/styleguide
+https://marketplace.visualstudio.com/items?itemName=AngularDoc.angulardoc-vscode
+https://github.com/mgechev/ngrev
+https://github.com/mgechev/ngworld
