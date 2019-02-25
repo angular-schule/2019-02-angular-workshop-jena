@@ -8,6 +8,9 @@
 
       <span class="badge badge-success">
         Rating: {{ book.rating }}
+
+        <ng-container *ngFor="let x of getRatingStars()">*</ng-container>
+
       </span>
     </div>
 
