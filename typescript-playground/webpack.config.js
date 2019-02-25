@@ -4,7 +4,7 @@ module.exports = {
   entry: './main.ts',
   output: { filename: 'bundle.js' },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts']
   },
   module: {
     rules: [{ test: /\.ts$/, loader: 'ts-loader' }]
