@@ -5,8 +5,7 @@ import { Book } from './book';
   providedIn: 'root'
 })
 export class BookRatingService {
-
-  constructor() { }
+  constructor() {}
 
   rateUp(book: Book): Book {
     return {

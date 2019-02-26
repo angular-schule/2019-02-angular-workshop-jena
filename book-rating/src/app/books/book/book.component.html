@@ -18,5 +18,10 @@
     <p>
       Preis: {{ book.price | currency:'EUR' }}
     </p>
+
+    <button (click)="doRateUp()" class="btn btn-success mr-2"> + </button>
+    <button (click)="doRateDown()" class="btn btn-danger mr-2"> – </button>
   </div>
 </div>
+
+{{ log() }}
