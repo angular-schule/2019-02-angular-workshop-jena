@@ -3,6 +3,10 @@
   <div class="form-group">
     <label>ISBN</label>
     <input type="text" class="form-control" formControlName="isbn">
+    
+    <div class="feedback-red" *ngIf="isInvalid('isbn')">
+      ISBN ist ungültig
+    </div>
   </div>
 
   <div class="form-group">

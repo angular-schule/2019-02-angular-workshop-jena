@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'br-create-book',
@@ -14,8 +14,12 @@ export class CreateBookComponent implements OnInit {
 
   ngOnInit() {
     this.bookForm = new FormGroup({
-      isbn: new FormControl(''),
-      title: new FormControl(''),
+      isbn: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(13)
+      ]),
+      title: new FormControl('', Validators.required),
       description: new FormControl(''),
       price: new FormControl(),
       authors: new FormArray([
@@ -23,6 +27,11 @@ export class CreateBookComponent implements OnInit {
         new FormControl('')
       ])
     });
+  }
+
+  isInvalid(name: string) {
+    const control = this.bookForm.get(name);
+    return control.invalid && control.dirty;
   }
 
   get authors(): FormArray {

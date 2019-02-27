@@ -23,7 +23,7 @@ export class BookStoreService {
     return this.http.get<Book>(`${this.apiUrl}/book/${isbn}`);
   }
 
-  create(book: Book): Observable<unknown> {
+  create(book: Book): Observable<any> {
     return this.http.post(
       `${this.apiUrl}/books`,
       book,
