@@ -33,7 +33,8 @@
   <div class="form-group" formArrayName="authors">
     <label>Authors</label>
 
-    <button class="btn btn-sm btn-secondary ml-2" (click)="addAuthor()"> + </button>
+    <button type="button" class="btn btn-sm btn-secondary ml-2"
+      (click)="addAuthor()"> + </button>
 
     <input *ngFor="let c of authors.controls; index as i"
       [formControlName]="i"

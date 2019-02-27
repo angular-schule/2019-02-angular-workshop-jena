@@ -29,6 +29,9 @@ export class CreateBookComponent implements OnInit {
         new FormControl('')
       ])
     });
+
+    this.bookForm.get('title').valueChanges
+      .subscribe(e => console.log(e));
   }
 
   submitForm() {
@@ -39,6 +42,8 @@ export class CreateBookComponent implements OnInit {
     };
 
     this.create.emit(newBook);
+
+    this.bookForm.reset();
   }
 
   isInvalid(name: string) {
