@@ -16,7 +16,7 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit() {
     // const isbn = this.route.snapshot.paramMap.get('isbn');
-    
+
     // TODO: Doppeltes subscribe vermeiden!
     this.route.paramMap.subscribe(params => {
       const isbn = params.get('isbn');
