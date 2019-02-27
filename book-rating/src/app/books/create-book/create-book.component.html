@@ -1,5 +1,6 @@
 <button (click)="logForm()">Log form</button>
-<form [formGroup]="bookForm">
+
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
 
   <div class="form-group">
     <label>ISBN</label>
@@ -38,6 +39,10 @@
       [formControlName]="i"
       class="form-control mb-2" type="text">
   </div>
+
+  <button class="btn btn-danger"
+    [disabled]="bookForm.invalid"
+    type="submit">Submit</button>
 
 </form>
 

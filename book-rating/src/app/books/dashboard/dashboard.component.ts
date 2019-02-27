@@ -23,6 +23,12 @@ export class DashboardComponent implements OnInit {
       .subscribe(books => this.books = books);
   }
 
+  createBook(book: Book) {
+    this.bs.create(book).subscribe(() => {
+      this.books = [...this.books, book];
+    });
+  }
+
   rateUp(book: Book) {
     const ratedBook = this.rs.rateUp(book);
     this.updateList(ratedBook);
