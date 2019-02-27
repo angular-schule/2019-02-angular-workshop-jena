@@ -5,3 +5,5 @@ https://github.com/mgechev/ngworld
 
 https://www.npmjs.com/package/ts-mockito
 https://doesitmutate.xyz/
+
+https://angular.io/guide/testing

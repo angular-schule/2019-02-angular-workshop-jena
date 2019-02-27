@@ -11,7 +11,9 @@
   </li>
 </ul>
 
-ANZAHL Bücher: {{ books.length }}
+<p *ngIf="books">
+  ANZAHL Bücher: {{ books.length }}
+</p>
 
 <p>Datum: {{ d | date:'fullDate' }}</p>
 

@@ -1,12 +1,35 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { Book } from './book';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookStoreService {
 
-  constructor() { }
+  private apiUrl = 'https://api.angular.schule';
+
+  constructor(private http: HttpClient) { }
+
+  getAll(): Observable<Book[]> {
+    // TODO: Mapping
+    // TODO: Error Handling
+    return this.http.get<Book[]>(`${this.apiUrl}/books`);
+  }
+
+  getSingle(isbn: string): Observable<Book> {
+    return this.http.get<Book>(`${this.apiUrl}/book/${isbn}`);
+  }
+
+  create(book: Book): Observable<unknown> {
+    return this.http.post(
+      `${this.apiUrl}/books`,
+      book,
+      { responseType: 'text' }
+    );
+  }
 
   getAllStatic(): Book[] {
     return [
