@@ -1,3 +1,4 @@
+<button (click)="logForm()">Log form</button>
 <form [formGroup]="bookForm">
 
   <div class="form-group">
@@ -6,6 +7,10 @@
     
     <div class="feedback-red" *ngIf="isInvalid('isbn')">
       ISBN ist ungültig
+    </div>
+
+    <div class="feedback-red" *ngIf="hasError('isbn', 'minlength')">
+      ISBN ist zu kurz
     </div>
   </div>
 

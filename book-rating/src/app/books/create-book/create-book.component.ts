@@ -34,6 +34,15 @@ export class CreateBookComponent implements OnInit {
     return control.invalid && control.dirty;
   }
 
+  hasError(name: string, errorCode: string) {
+    const control = this.bookForm.get(name);
+    return control.hasError(errorCode) && control.dirty;
+  }
+
+  logForm() {
+    console.log(this.bookForm);
+  }
+
   get authors(): FormArray {
     return this.bookForm.get('authors') as FormArray;
     // Type Assertion ist böse!
