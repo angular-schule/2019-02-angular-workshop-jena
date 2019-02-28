@@ -9,3 +9,6 @@ https://doesitmutate.xyz/
 https://angular.io/guide/testing
 https://toddmotto.com/building-tesla-range-calculator-angular-2-reactive-forms
 https://leanpub.com/router
+
+https://blog.angularindepth.com/power-of-rxjs-when-using-exponential-backoff-a4b8bde276b0
+https://blog.strongbrew.io/safe-http-calls-with-rxjs/

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Book } from './book';
-import { Observable } from 'rxjs';
+import { Observable, of, range } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,25 @@ export class BookStoreService {
 
   getAll(): Observable<Book[]> {
     // TODO: Mapping
-    // TODO: Error Handling
-    return this.http.get<Book[]>(`${this.apiUrl}/books`);
+    return this.http.get<any[]>(`${this.apiUrl}/books`).pipe(
+      map(rawBooks => rawBooks.map(
+        rawBook => this.mapToBook(rawBook)
+      )),
+      catchError(err => of(this.getAllStatic()))
+    );
   }
 
+  search(term: string): Observable<Book[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/books/search/${term}`).pipe(
+      map(rawBooks => (rawBooks ? rawBooks : [])),
+      map(rawBooks => rawBooks.map(rawBook => this.mapToBook(rawBook)))
+    );
+}
+
   getSingle(isbn: string): Observable<Book> {
-    return this.http.get<Book>(`${this.apiUrl}/book/${isbn}`);
+    return this.http.get<any>(`${this.apiUrl}/book/${isbn}`).pipe(
+      map(rawBook => this.mapToBook(rawBook))
+    );
   }
 
   create(book: Book): Observable<any> {
@@ -29,6 +43,18 @@ export class BookStoreService {
       book,
       { responseType: 'text' }
     );
+  }
+
+
+  private mapToBook(rawBook: any): Book {
+    return {
+      isbn: rawBook.isbn,
+      title: rawBook.title,
+      price: rawBook.price,
+      rating: rawBook.rating,
+      authors: rawBook.authors,
+      description: rawBook.description
+    };
   }
 
   getAllStatic(): Book[] {
