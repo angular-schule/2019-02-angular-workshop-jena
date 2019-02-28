@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 import { BookStoreService } from '../shared/book-store.service';
+import { Store, select } from '@ngrx/store';
+import { State } from 'src/app/reducers';
+import { LoadBooks } from '../actions/book.actions';
+import { getBooksLoading, getAllBooks } from '../selectors/book.selectors';
 
 @Component({
   selector: 'br-dashboard',
@@ -10,22 +14,25 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class DashboardComponent implements OnInit {
 
+  loading$ = this.store.pipe(select(getBooksLoading));
+  books$ = this.store.pipe(select(getAllBooks));
 
   d = new Date();
 
-  books: Book[];
+  // books: Book[];
 
-  constructor(private rs: BookRatingService, private bs: BookStoreService) {}
+  constructor(
+    private rs: BookRatingService,
+    private bs: BookStoreService,
+    private store: Store<State>) {}
 
   ngOnInit() {
-    // this.books = this.bs.getAllStatic();
-    this.bs.getAll()
-      .subscribe(books => this.books = books);
+    this.store.dispatch(new LoadBooks());
   }
 
   createBook(book: Book) {
     this.bs.create(book).subscribe(() => {
-      this.books = [...this.books, book];
+      // this.books = [...this.books, book];
     });
   }
 
@@ -40,9 +47,9 @@ export class DashboardComponent implements OnInit {
   }
 
   updateList(book: Book) {
-    this.books = this.books
+    /*this.books = this.books
       .map(b => b.isbn === book.isbn ? book : b)
-      .sort((a, b) => b.rating - a.rating);
+      .sort((a, b) => b.rating - a.rating);*/
   }
 
 }

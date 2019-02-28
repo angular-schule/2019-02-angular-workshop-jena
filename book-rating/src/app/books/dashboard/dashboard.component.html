@@ -1,19 +1,19 @@
 <br-create-book (create)="createBook($event)"></br-create-book>
 
 <br-book
-  *ngFor="let b of books"
+  *ngFor="let b of books$ | async"
   [book]="b"
   (rateUp)="rateUp($event)"
   (rateDown)="rateDown($event)"></br-book>
 
   
 <ul>
-  <li *ngFor="let b of books; index as i">
+  <li *ngFor="let b of books$ | async; index as i">
     {{ i + 1 }} / {{ b.title }}
   </li>
 </ul>
 
-<p *ngIf="books">
+<p *ngIf="books$ | async as books">
   ANZAHL Bücher: {{ books.length }}
 </p>
 
