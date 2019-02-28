@@ -29,7 +29,7 @@ export class BookStoreService {
       map(rawBooks => (rawBooks ? rawBooks : [])),
       map(rawBooks => rawBooks.map(rawBook => this.mapToBook(rawBook)))
     );
-}
+  }
 
   getSingle(isbn: string): Observable<Book> {
     return this.http.get<any>(`${this.apiUrl}/book/${isbn}`).pipe(
